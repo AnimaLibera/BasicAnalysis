@@ -1,0 +1,1 @@
+Small Projekt to do Basic Analysis of Foreign Exchange Prices
