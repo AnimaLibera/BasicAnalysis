@@ -1,0 +1,81 @@
+{
+	"pairs": [{
+			"delimiter": {
+				"investingdotcom": "/"
+			},
+			"basis": {
+				"currency": {
+					"name": "Euro",
+					"code": {
+						"iso": "EUR"
+					}
+				},
+				"yield": {
+					"name": "Germany 3 Month Bond Yield",
+					"code": {
+						"investingdotcom": "DE3MT=RR"
+					}
+				},
+				"country": {
+					"Name": "Euro Zone"
+				}
+			},
+			"counter": {
+				"currency": {
+					"name": "Dollar",
+					"code": {
+						"iso": "USD"
+					}
+				},
+				"yield": {
+					"name": "United States 3-Month Bond Yield",
+					"code": {
+						"investingdotcom": "US3MT=X"
+					}
+				},
+				"country": {
+					"Name": "United State of Amerika"
+				}
+			}
+		},
+		{
+			"delimiter": {
+				"investingdotcom": "/"
+			},
+			"basis": {
+				"currency": {
+					"name": "Great British Pound",
+					"code": {
+						"iso": "GBP"
+					}
+				},
+				"yield": {
+					"name": "United Kingdom 3-Month Bond Yield",
+					"code": {
+						"investingdotcom": "GB3MT=RR"
+					}
+				},
+				"country": {
+					"Name": "United Kingdom"
+				}
+			},
+			"counter": {
+				"currency": {
+					"name": "Dollar",
+					"code": {
+						"iso": "USD"
+					}
+				},
+				"yield": {
+					"name": "United States 3-Month Bond Yield",
+					"code": {
+						"investingdotcom": "US3MT=X"
+					}
+				},
+				"country": {
+					"Name": "United State of Amerika"
+				}
+			}
+		}
+	]
+}

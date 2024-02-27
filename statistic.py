@@ -33,7 +33,7 @@ def kurtosis(returns: pd.Series):
     exp = (demeaned_return ** 4).mean()
     return exp/sigma_return ** 4
 
-def is_normal_distrubuted(returns: pd.Series, level=0.01):
+def is_normal_distributed(returns: pd.Series, level=0.01):
     """Jargue-Bera Test"""
 
     _, p_value = st.jarque_bera(returns)
