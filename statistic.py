@@ -39,10 +39,10 @@ def is_normal_distributed(returns: pd.Series, level=0.01):
     _, p_value = st.jarque_bera(returns)
     return p_value > level
 
-def show_descriptive_statistics(returns: pd.DataFrame):
+def show_descriptive_statistics(returns: pd.DataFrame, periods_per_year: int = 52):
     """Show Descriptive Statistics for Returns DataFrame"""
-    ann_returns = returns.aggregate(annualized_returns).round(2)
-    ann_volatility = returns.aggregate(annualized_volatility).round(2)
+    ann_returns = returns.aggregate(annualized_returns, periods_per_year=periods_per_year).round(2)
+    ann_volatility = returns.aggregate(annualized_volatility, periods_per_year=periods_per_year).round(2)
     skew = returns.aggregate(skewness).round(2)
     kurt = returns.aggregate(kurtosis).round(2)
     normal = returns.aggregate(is_normal_distributed)
