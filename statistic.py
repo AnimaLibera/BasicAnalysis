@@ -4,7 +4,7 @@ import scipy.stats as st
 def wealtch_index(returns: pd.Series):
     """Take Return Series and calculate Wealthindex"""
 
-    return (1 + returns).cumprod()
+    return (1 + returns).cumprod() - 1
 
 def annualized_returns(returns: pd.Series, periods_per_year: int = 52):
     """Calculate annualzide Returns for Return Series"""
@@ -38,3 +38,17 @@ def is_normal_distributed(returns: pd.Series, level=0.01):
 
     _, p_value = st.jarque_bera(returns)
     return p_value > level
+
+def show_descriptive_statistics(returns: pd.DataFrame):
+    """Show Descriptive Statistics for Returns DataFrame"""
+    ann_returns = returns.aggregate(annualized_returns).round(2)
+    ann_volatility = returns.aggregate(annualized_volatility).round(2)
+    skew = returns.aggregate(skewness).round(2)
+    kurt = returns.aggregate(kurtosis).round(2)
+    normal = returns.aggregate(is_normal_distributed)
+    return pd.DataFrame({   "Annualized Return": ann_returns,
+                            "Annualized Volatility": ann_volatility,
+                            "Skewness": skew,
+                            "Kurtosis": kurt,
+                            "Normal Distribution": normal
+                            })
