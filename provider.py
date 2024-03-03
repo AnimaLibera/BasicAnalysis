@@ -1,5 +1,6 @@
 from pandas_datareader import data as pdr
 import pandas as pd
+import numpy as np
 import yfinance as yf
 import json
 
@@ -36,12 +37,24 @@ def get_yield_code_counter_currency(currency, metainformation):
     """Get Yield Code for Yahoo Finance for Counter Currency by ISO-Code from Metainformation"""
     return list(filter(lambda x: x["counter"]["currency"]["code"]["iso"] == currency, metainformation))[0]["counter"]["yield"]["code"]["yahoofiannce"]
 
-def get_yield_differential(basis, counter, metainformation, start="2003-01-01", end="2023-12-31", interval="1wk", periods_per_year = 52):
-    """Get Yield Differential between Basis and Counter Currency with Yields from Yahoo Finance for specific Periods per Year"""
-    yield_code_basis = get_yield_code_basis_currency(basis, metainformation)
-    yield_code_counter = get_yield_code_counter_currency(counter, metainformation)
-    yield_data_basis = pdr.get_data_yahoo(yield_code_basis, start=start, end=end, interval=interval) ** (1 / periods_per_year)
-    yield_data_counter = pdr.get_data_yahoo(yield_code_counter, start=start, end=end, interval=interval) ** (1 / periods_per_year)
+def get_yield_differential(pair, start="2013-01-01", end="2023-12-31", periods_per_year = 52):
+    """Get Yield Differential between Basis and Counter Currency with Yields from local File for specific Periods per Year"""
+
+    mapping = {"AUD": "AD",
+               "CAD": "CA",
+               "EUR": "EU",
+               "JPY": "JP",
+               "NZD": "NZ",
+               "GBP": "UK",
+               "USD": "US"}
+    
+    basis_currency = pair[:3]
+    counter_currency = pair[3:]
+
+    # r = (1+i)^(1/n)-1
+
+    yield_data_basis = (1 + get_yield(mapping[basis_currency])) ** ( 1 / periods_per_year) - 1
+    yield_data_counter = (1 + get_yield(mapping[counter_currency])) ** ( 1 / periods_per_year) - 1
     yield_data_differential = yield_data_basis - yield_data_counter
     return yield_data_basis, yield_data_counter, yield_data_differential
 
@@ -63,4 +76,4 @@ def get_yield(country, relativ_path="./Data/Yields/", file_format = "EconDB {cou
 
     file_name = file_format.format(country=country)
     df = pd.read_csv(relativ_path + file_name, index_col=0, parse_dates=True)
-    return df
+    return df / 100
