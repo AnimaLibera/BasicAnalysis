@@ -57,3 +57,10 @@ def wrangle_yield_files(relativ_path = "./Data/Yields/"):
         df = df.loc["2012-12-31":"2023",].resample('W').last().ffill()
         target_file = f"EconDB {country} 3 Month Yield 2013 to 2023 Weekly.csv"
         df.to_csv(relativ_path + target_file)
+
+def get_yield(country, relativ_path="./Data/Yields/", file_format = "EconDB {country} 3 Month Yield 2013 to 2023 Weekly.csv"):
+    """Get Yield Data from EconDB"""
+
+    file_name = file_format.format(country=country)
+    df = pd.read_csv(relativ_path + file_name, index_col=0, parse_dates=True)
+    return df
