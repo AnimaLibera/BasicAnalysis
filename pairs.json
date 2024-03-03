@@ -29,7 +29,8 @@
 				"yield": {
 					"name": "United States 3-Month Bond Yield",
 					"code": {
-						"investingdotcom": "US3MT=X"
+						"investingdotcom": "US3MT=X",
+						"yahoofiannce": "^IRX"
 					}
 				},
 				"country": {
@@ -68,7 +69,8 @@
 				"yield": {
 					"name": "United States 3-Month Bond Yield",
 					"code": {
-						"investingdotcom": "US3MT=X"
+						"investingdotcom": "US3MT=X",
+						"yahoofiannce": "^IRX"
 					}
 				},
 				"country": {

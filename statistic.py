@@ -4,7 +4,7 @@ import scipy.stats as st
 def wealtch_index(returns: pd.Series):
     """Take Return Series and calculate Wealthindex"""
 
-    return (1 + returns).cumprod() - 1
+    return (1 + returns).cumprod()
 
 def annualized_returns(returns: pd.Series, periods_per_year: int = 52):
     """Calculate annualzide Returns for Return Series"""
